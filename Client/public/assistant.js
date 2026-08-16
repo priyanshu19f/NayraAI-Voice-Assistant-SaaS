@@ -9,7 +9,7 @@
     // load css
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "http://localhost:5173/assistant.css";
+    link.href = "https://nayraai.onrender.com/assistant.css";
     document.head.appendChild(link);
 
     // create popup
@@ -57,7 +57,7 @@
         <div class="nayra-bottom">
         
             <button class="nayra-mic">
-                <img src="http://localhost:5173/mic.svg" alt="mic" class="nayra-mic-icon" />
+                <img src="https://nayraai.onrender.com/mic.svg" alt="mic" class="nayra-mic-icon" />
             </button>
         
         </div>
@@ -73,7 +73,7 @@
     button.style.opacity = "0";
     button.style.transition = "opacity 0.3s ease";
     button.innerHTML = `
-<img src="http://localhost:5173/logo.svg" alt="logo" /> 
+<img src="https://nayraai.onrender.com/logo.svg" alt="logo" /> 
 `;
 
     document.body.appendChild(button);
