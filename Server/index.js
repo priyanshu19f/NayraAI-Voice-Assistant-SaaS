@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 
 const privateCors = cors({
-    origin: ["http://localhost:5173"],
+    origin: ["https://nayraai.onrender.com"],
     credentials: true,
 });
 
