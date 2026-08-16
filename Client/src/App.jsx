@@ -12,7 +12,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 
 export const ServerUrl = "https://nayraaiserver.onrender.com";
-export const CLIENT_URL = "http://localhost:5173";
+export const CLIENT_URL = "https://nayraai.onrender.com";
 function App() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
