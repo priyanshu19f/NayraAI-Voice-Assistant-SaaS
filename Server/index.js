@@ -21,6 +21,13 @@ const publicCors = cors({ origin: "*" });
 app.use(express.json());
 app.use(cookieParser());
 
+// Health check
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "ok",
+    });
+});
+
 app.use("/api/auth", privateCors, authRouter);
 app.use("/api/user", privateCors, userRouter);
 app.use("/api/billing", privateCors, billingRouter);
