@@ -3,13 +3,26 @@
     const script = document.currentScript;
     const userId = script?.dataset.userId;
 
+    // Auto-detect environment based on where this script is hosted
+    const scriptSrc = script?.src || "";
+    const isLocal =
+        scriptSrc.includes("localhost") || scriptSrc.includes("127.0.0.1");
+
+    const BASE_URL = isLocal
+        ? "http://localhost:5173"
+        : "https://nayraai.onrender.com";
+
+    const API_URL = isLocal
+        ? "http://localhost:8000"
+        : "https://nayraaiserver.onrender.com";
+
     const theme = "dark";
     let assistantConfig = null;
 
     // load css
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "https://nayraai.onrender.com/assistant.css";
+    link.href = `${BASE_URL}/assistant.css`;
     document.head.appendChild(link);
 
     // create popup
@@ -57,7 +70,7 @@
         <div class="nayra-bottom">
         
             <button class="nayra-mic">
-                <img src="https://nayraai.onrender.com/mic.svg" alt="mic" class="nayra-mic-icon" />
+                <img src="${BASE_URL}/mic.svg" alt="mic" class="nayra-mic-icon" />
             </button>
         
         </div>
@@ -73,7 +86,7 @@
     button.style.opacity = "0";
     button.style.transition = "opacity 0.3s ease";
     button.innerHTML = `
-<img src="https://nayraai.onrender.com/logo.svg" alt="logo" /> 
+<img src="${BASE_URL}/logo.svg" alt="logo" /> 
 `;
 
     document.body.appendChild(button);
@@ -89,7 +102,7 @@
     const loadAssistant = async () => {
         try {
             const res = await fetch(
-                `https://nayraaiserver.onrender.com/api/assistant/config/${userId}`,
+                `${API_URL}/api/assistant/config/${userId}`,
             );
             const data = await res.json();
             if (data) {
@@ -190,19 +203,16 @@
             setTimeout(async () => {
                 try {
                     status.innerText = "Thinking...";
-                    const res = await fetch(
-                        "https://nayraaiserver.onrender.com/api/assistant/ask",
-                        {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                message: text,
-                                userId,
-                            }),
+                    const res = await fetch(`${API_URL}/api/assistant/ask`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
                         },
-                    );
+                        body: JSON.stringify({
+                            message: text,
+                            userId,
+                        }),
+                    });
 
                     const data = await res.json();
                     console.log(data);

@@ -11,8 +11,8 @@ import { Toaster } from "react-hot-toast";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 
-export const ServerUrl = "https://nayraaiserver.onrender.com";
-export const CLIENT_URL = "https://nayraai.onrender.com";
+export const ServerUrl = import.meta.env.VITE_SERVER_URL;
+export const CLIENT_URL = import.meta.env.VITE_CLIENT_URL;
 function App() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
