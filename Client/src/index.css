@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+    --font-sans: "Inter", sans-serif;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
 @keyframes pageItemIn {
     from {
         opacity: 0;
